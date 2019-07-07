@@ -5,22 +5,21 @@
  */
 package Interfaz;
 
-import Negocio.UILista;
-import Negocio.Utilitarios;
+
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author SRVAdmin
  */
 public class FrmLista extends javax.swing.JFrame {
-    private UILista ui;
-    /**
-     * Creates new form FrmLista
-     */
+    ArrayList<Integer> L = new ArrayList<>();
+
+    
     public FrmLista() {
         initComponents();
-        ui=new UILista();
     }
 
     /**
@@ -37,15 +36,13 @@ public class FrmLista extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         TxtValor = new javax.swing.JTextField();
         BtnAgregarFinal = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jBIntercambio = new javax.swing.JButton();
-        jBCuantosRepetidos = new javax.swing.JButton();
-        jBElimRep = new javax.swing.JButton();
+        jBApariciones = new javax.swing.JButton();
+        jBElimApariciones = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -68,10 +65,6 @@ public class FrmLista extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Total de Nodos:");
-
-        jLabel3.setText("0");
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Agregar");
 
@@ -91,17 +84,17 @@ public class FrmLista extends javax.swing.JFrame {
             }
         });
 
-        jBCuantosRepetidos.setText("Cuantos Repetidos");
-        jBCuantosRepetidos.addActionListener(new java.awt.event.ActionListener() {
+        jBApariciones.setText("Apariciones");
+        jBApariciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCuantosRepetidosActionPerformed(evt);
+                jBAparicionesActionPerformed(evt);
             }
         });
 
-        jBElimRep.setText("Elimina Repetidos");
-        jBElimRep.addActionListener(new java.awt.event.ActionListener() {
+        jBElimApariciones.setText("Elimina Repetidos");
+        jBElimApariciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBElimRepActionPerformed(evt);
+                jBElimAparicionesActionPerformed(evt);
             }
         });
 
@@ -113,34 +106,29 @@ public class FrmLista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(117, 117, 117)
                         .addComponent(jLabel4)
                         .addGap(84, 84, 84)
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(BtnAgregarFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addComponent(jBIntercambio)))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBCuantosRepetidos)
+                    .addComponent(jBApariciones)
                     .addComponent(jLabel6))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jBElimRep))
-                .addContainerGap(78, Short.MAX_VALUE))
+                    .addComponent(jBElimApariciones))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,18 +147,14 @@ public class FrmLista extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel6)
                                 .addComponent(jLabel7)))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BtnAgregarFinal)
                             .addComponent(jBIntercambio)
-                            .addComponent(jBCuantosRepetidos)
-                            .addComponent(jBElimRep))
+                            .addComponent(jBApariciones)
+                            .addComponent(jBElimApariciones))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
@@ -181,8 +165,15 @@ public class FrmLista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarFinalActionPerformed
-        ui.agregarfinal(this);
-        Utilitarios.CargarLista(this,ui.getLista());
+
+        if(Valor.esNumero(TxtValor.getText())){
+            L.add(Integer.parseInt(TxtValor.getText()));
+        }else{
+        JOptionPane.showMessageDialog(null,"Error, no es un valor numerico!");
+        }
+
+        Valor.CargarLista(this,L);
+        
     }//GEN-LAST:event_BtnAgregarFinalActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -191,19 +182,47 @@ public class FrmLista extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jBIntercambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIntercambioActionPerformed
-       ui.intercambio(this);
-       Utilitarios.CargarLista(this,ui.getLista());
+
+        int pos1=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese la primera posicion a intercambiar!"));
+        int pos2=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese la segunda posicion a intercambiar!"));
+        if(pos1>=0&&pos1<=L.size()&&pos2>=0&&pos2<=L.size()){
+        Valor.intercambio(pos1, pos2, L);
+        }else{
+        JOptionPane.showMessageDialog(null,"Fuera del rango","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        Valor.CargarLista(this, L);
     }//GEN-LAST:event_jBIntercambioActionPerformed
 
-    private void jBCuantosRepetidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCuantosRepetidosActionPerformed
-        ui.cuantosRepetidos(this);
+    private void jBAparicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAparicionesActionPerformed
         
-    }//GEN-LAST:event_jBCuantosRepetidosActionPerformed
+        int num=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese el valor a revisar!"));
+        if(Valor.esNumero(String.valueOf(num))){
+        }else{
+        JOptionPane.showMessageDialog(null,"Error, no es un valor numerico!");
+        }
+        int apariciones=Valor.apariciones(num, L);
+        Valor.CargarLista(this, L);
+        JOptionPane.showMessageDialog(null,"Valor: "+num+"\nTotal apariciones: "+apariciones);
+    }//GEN-LAST:event_jBAparicionesActionPerformed
 
-    private void jBElimRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimRepActionPerformed
-        ui.elimRepetidos();
-        Utilitarios.CargarLista(this,ui.getLista());
-    }//GEN-LAST:event_jBElimRepActionPerformed
+    private void jBElimAparicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimAparicionesActionPerformed
+        
+        int num=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese el valor a eliminar!"));
+        if(Valor.esNumero(String.valueOf(num))){
+            
+        }else{
+        JOptionPane.showMessageDialog(null,"Error, no es un valor numerico!");
+        }
+        boolean apariciones=Valor.elimRepetidos(num, L);
+        Valor.CargarLista(this, L);
+        if(apariciones){
+        JOptionPane.showMessageDialog(null,"Se elimino con exito!");
+        }else{
+            JOptionPane.showMessageDialog(null,"Valor: "+num+" no se elimino ya que no se encontro este valor en la lista.","OJO",JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jBElimAparicionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,12 +263,10 @@ public class FrmLista extends javax.swing.JFrame {
     private javax.swing.JButton BtnAgregarFinal;
     public javax.swing.JList<String> Lista;
     public javax.swing.JTextField TxtValor;
-    private javax.swing.JButton jBCuantosRepetidos;
-    private javax.swing.JButton jBElimRep;
+    private javax.swing.JButton jBApariciones;
+    private javax.swing.JButton jBElimApariciones;
     private javax.swing.JButton jBIntercambio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
