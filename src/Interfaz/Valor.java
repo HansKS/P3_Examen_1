@@ -9,6 +9,8 @@ package Interfaz;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.DefaultListModel;
 
 /**
@@ -65,19 +67,11 @@ public class Valor {
            return contador; 
        }
        
-       public static boolean elimRepetidos (int num, ArrayList L){
-           int cont=0;
-           for(int i=0;i<L.size();i++){
-           if(num==(Integer)L.get(i)){
-               L.remove(i);
-               cont++;
-           }
-           }         
-           if(cont<=0){
-           return false;
-           }else{
-           return true;
-           }
+       public static void elimRepetidos (ArrayList L){
+           
+           Set<ArrayList> hashSet = new HashSet<>(L);
+           L.clear();
+           L.addAll(hashSet);
         
        }
 

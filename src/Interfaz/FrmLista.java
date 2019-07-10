@@ -208,20 +208,10 @@ public class FrmLista extends javax.swing.JFrame {
 
     private void jBElimAparicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimAparicionesActionPerformed
         
-        int num=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese el valor a eliminar!"));
-        if(Valor.esNumero(String.valueOf(num))){
-            
-        }else{
-        JOptionPane.showMessageDialog(null,"Error, no es un valor numerico!");
-        }
-        boolean apariciones=Valor.elimRepetidos(num, L);
-        Valor.CargarLista(this, L);
-        if(apariciones){
-        JOptionPane.showMessageDialog(null,"Se elimino con exito!");
-        }else{
-            JOptionPane.showMessageDialog(null,"Valor: "+num+" no se elimino ya que no se encontro este valor en la lista.","OJO",JOptionPane.ERROR_MESSAGE);
-        }
-        
+      
+      JOptionPane.showMessageDialog(null,"Eliminando repetidos!");
+      Valor.elimRepetidos(L);
+      Valor.CargarLista(this, L);
     }//GEN-LAST:event_jBElimAparicionesActionPerformed
 
     /**
